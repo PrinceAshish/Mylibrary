@@ -1,0 +1,24 @@
+<h2>Search Books</h2>
+<form action="/Book" method="get">
+    <div>
+        <label for="nameId">Title :</label>
+        <input type="text" name="title" id="nameId" value="<%= boxName.title %> ">
+    </div>
+    <div>
+        <label for="nameId">Publish After :</label>
+        <input type="text" name="publishedAfter" id="nameId" value="<%= boxName.publishedAfter %> ">
+    </div>
+    <div>
+        <label for="nameId">Publish Before :</label>
+        <input type="text" name="publishedBefore" id="nameId" value="<%= boxName.publishedBefore %> ">
+    </div>
+
+<button type="submit">Search</button>
+</form>
+<br>
+<div>
+    <% for(let book of books){ %>
+        <img src="<%= book.coverImgPath %> " alt="" height="150" width="100">
+        <%  } %>
+</div>
+ 
