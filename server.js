@@ -5,15 +5,18 @@ if(process.env.NODE_ENV != "production"){
 const express = require('express')
 const app = express(); 
 const expressLayouts = require("express-ejs-layouts")
-const path = require('path')
+const bodyParser = require("body-parser")
+
 
 const IndexRouter = require('./routes/index')
+const AuthorRouter = require('./routes/authors')
 
 app.set('view engine', 'ejs')
 app.set('views', __dirname + '/views')
 app.set('layout','layouts/layout')
 app.use(expressLayouts)
 app.use(express.static('public'))
+app.use(bodyParser.urlencoded({ limit: '10mb', extended: false}))
 
 const mongoose = require('mongoose')
  
@@ -26,6 +29,7 @@ db.once('open', ()=>{
 
 
 app.use("/", IndexRouter)
+app.use("/authors", AuthorRouter)
 
 app.listen(process.env.PORT ||  3000,()=>{
     console.log("i am Listing 3000")
